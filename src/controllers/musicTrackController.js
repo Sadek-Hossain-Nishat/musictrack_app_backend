@@ -41,15 +41,31 @@ const getMusicbyKeyword = (req, res, next) => {
   let title = req.params.title;
   console.log("params =>", req.params);
   console.log("title=>", title);
-  MusicTrack.createIndex({ title: "text" });
+  // MusicTrack.index({ title: "text" });
   // Create a query that searches for the string title
   const query = { $text: { $search: title } };
 
   MusicTrack.find(query)
     .then((response) => {
-      res.json({
-        response,
-      });
+      if (response.length == 0) {
+        MusicTrack.find({ title: { $gte: title } })
+          .then((response) => {
+            res.json({
+              response,
+            });
+          })
+          .catch((error) => {
+            res.json({
+              error,
+            });
+          });
+      }
+      if (response.length >= 1) {
+        res.json({
+          response,
+          length: response.length,
+        });
+      }
     })
     .catch((error) => {
       res.json({

@@ -24,4 +24,6 @@ const musicTrackSchema = new Schema(
     timestamps: true,
   }
 );
+
+musicTrackSchema.index({ title: "text" });
 module.exports = mongoose.model("MusicTrack", musicTrackSchema);
