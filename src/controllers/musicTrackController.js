@@ -5,7 +5,7 @@ const createMusicTrack = (req, res, next) => {
     title: req.body.title,
     artist: req.body.artist,
     imgUrl: req.body.imgUrl,
-    musicUrl: req.body.imgUrl,
+    musicUrl: req.body.musicUrl,
   });
 
   musicTrack
