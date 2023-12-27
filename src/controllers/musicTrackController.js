@@ -41,7 +41,11 @@ const getMusicbyKeyword = (req, res, next) => {
   let title = req.params.title;
   console.log("params =>", req.params);
   console.log("title=>", title);
-  MusicTrack.find({ title: { $gte: title } })
+  MusicTrack.createIndex({ title: "text" });
+  // Create a query that searches for the string title
+  const query = { $text: { $search: title } };
+
+  MusicTrack.find(query)
     .then((response) => {
       res.json({
         response,
@@ -52,6 +56,18 @@ const getMusicbyKeyword = (req, res, next) => {
         error,
       });
     });
+
+  // MusicTrack.find({ title: { $gte: title } })
+  //   .then((response) => {
+  //     res.json({
+  //       response,
+  //     });
+  //   })
+  //   .catch((error) => {
+  //     res.json({
+  //       error,
+  //     });
+  //   });
 };
 
 const getMusicbyTitle = (req, res, next) => {
