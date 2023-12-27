@@ -1,0 +1,5 @@
+Username: sadekhossainnishat
+Password: MWLnBHr2aqjgqHUX
+
+
+connecting_strng: mongodb+srv://sadekhossainnishat:<password>@cluster0.tgk3ux0.mongodb.net/?retryWrites=true&w=majority
