@@ -41,7 +41,7 @@ const getMusicbyKeyword = (req, res, next) => {
   let title = req.params.title.toUpperCase();
   console.log("params =>", req.params);
   console.log("title=>", title);
-  MusicTrack.find({ title: { $gte: title } })
+  MusicTrack.find({ title: { $lte: title } })
     .then((response) => {
       res.json({
         response,
